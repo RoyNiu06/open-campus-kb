@@ -1,0 +1,95 @@
+{
+  "project": {
+    "id": "cityuinfo-example",
+    "name": "CityUInfo Example",
+    "domain": "cityuinfo.example.com",
+    "version": "2.0.0-example",
+    "official": false
+  },
+  "locales": ["zh-CN", "zh-HK", "en"],
+  "branding": {
+    "zh-CN": {
+      "brandSub": "Unofficial freshman information assistant",
+      "disclaimer": "This is a public example project, not an official university platform. Always verify important matters with official notices.",
+      "chatEmpty": "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. Answers should be grounded in reviewed sources whenever possible."
+    },
+    "zh-HK": {
+      "brandSub": "Unofficial freshman information assistant",
+      "disclaimer": "This is a public example project, not an official university platform. Always verify important matters with official notices.",
+      "chatEmpty": "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. Answers should be grounded in reviewed sources whenever possible."
+    },
+    "en": {
+      "brandSub": "Unofficial freshman information assistant",
+      "disclaimer": "This example project is not an official university platform. Always verify important matters with official notices.",
+      "chatEmpty": "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. Answers should be grounded in reviewed sources whenever possible."
+    }
+  },
+  "categories": [
+    {
+      "id": "pre_arrival",
+      "label": {
+        "zh-CN": "Pre-arrival",
+        "zh-HK": "Pre-arrival",
+        "en": "Pre-arrival"
+      }
+    },
+    {
+      "id": "course_registration",
+      "label": {
+        "zh-CN": "Course registration",
+        "zh-HK": "Course registration",
+        "en": "Course registration"
+      }
+    },
+    {
+      "id": "housing",
+      "label": {
+        "zh-CN": "Housing",
+        "zh-HK": "Housing",
+        "en": "Housing"
+      }
+    },
+    {
+      "id": "student_life",
+      "label": {
+        "zh-CN": "Student life",
+        "zh-HK": "Student life",
+        "en": "Student life"
+      }
+    }
+  ],
+  "sourceTrustTiers": [
+    {
+      "id": "school_official",
+      "rank": 1,
+      "label": {
+        "zh-CN": "School official",
+        "zh-HK": "School official",
+        "en": "School official"
+      }
+    },
+    {
+      "id": "student_union_official",
+      "rank": 2,
+      "label": {
+        "zh-CN": "Student organization official",
+        "zh-HK": "Student organization official",
+        "en": "Student organization official"
+      }
+    },
+    {
+      "id": "student_notes",
+      "rank": 3,
+      "label": {
+        "zh-CN": "Student notes",
+        "zh-HK": "Student notes",
+        "en": "Student notes"
+      }
+    }
+  ],
+  "usageLimits": {
+    "anonymousPoints": 30,
+    "windowHours": 5,
+    "windowBudgetCny": 0.5
+  }
+}

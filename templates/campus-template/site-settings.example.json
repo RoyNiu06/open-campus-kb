@@ -1,0 +1,24 @@
+{
+  "aboutContent": {
+    "en": [
+      ["Contact", "For feedback, email support@example.edu."],
+      ["About", "This project collects reviewed public information and uses AI to help users find source-grounded answers."],
+      ["Disclaimer", "AI answers may be incomplete or wrong. Always verify important deadlines, fees, policy, and legal matters with official sources."],
+      ["Privacy", "Anonymous usage metrics may be recorded for rate limiting and abuse prevention. Optional question logging should be clearly disclosed."]
+    ]
+  },
+  "chatEmpty": {
+    "en": "Ask a question about onboarding, academics, housing, facilities, or student life."
+  },
+  "releaseNotes": [
+    {
+      "version": "0.1.0",
+      "date": "2026-07-04",
+      "items": [
+        "Initial OpenCampusKB template.",
+        "Reviewed source-grounded Q&A shape.",
+        "Knowledge base, upload review, and admin workflow placeholders."
+      ]
+    }
+  ]
+}

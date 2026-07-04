@@ -1,0 +1,26 @@
+{
+  "name": "open-campus-kb",
+  "version": "2.0.0-example",
+  "description": "Open-source framework for reviewed, source-grounded campus knowledge bases and AI Q&A assistants.",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "keywords": [
+    "knowledge-base",
+    "rag",
+    "campus",
+    "cloudflare-workers",
+    "supabase",
+    "pgvector"
+  ],
+  "scripts": {
+    "check": "node --check worker/open-campus-worker.mjs",
+    "seed:example": "node scripts/seed-example-documents.mjs",
+    "check:release": "node scripts/check-release.mjs",
+    "dev": "wrangler dev --config wrangler.example.jsonc",
+    "deploy": "wrangler deploy --config wrangler.example.jsonc"
+  },
+  "devDependencies": {
+    "wrangler": "^4.99.0"
+  }
+}

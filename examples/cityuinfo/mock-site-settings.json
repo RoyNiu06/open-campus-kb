@@ -1,0 +1,24 @@
+{
+  "aboutContent": {
+    "zh-CN": [
+      ["Contact", "For feedback, email example@example.com."],
+      ["About", "This is a CityUInfo-style OpenCampusKB example. It does not contain production materials."],
+      ["Disclaimer", "This example is not an official university platform. AI answers are for reference only."]
+    ],
+    "zh-HK": [
+      ["Contact", "For feedback, email example@example.com."],
+      ["About", "This is a CityUInfo-style OpenCampusKB example. It does not contain production materials."],
+      ["Disclaimer", "This example is not an official university platform. AI answers are for reference only."]
+    ],
+    "en": [
+      ["Contact", "For feedback, email example@example.com."],
+      ["About", "This is a CityUInfo-style OpenCampusKB example. It does not contain production materials."],
+      ["Disclaimer", "This example is not an official university platform. AI answers are for reference only."]
+    ]
+  },
+  "chatEmpty": {
+    "zh-CN": "Ask about enrolment, course registration, housing, entry endorsement, and campus life. This example uses mock materials only.",
+    "zh-HK": "Ask about enrolment, course registration, housing, entry endorsement, and campus life. This example uses mock materials only.",
+    "en": "Ask about enrolment, course registration, housing, entry endorsement, and campus life. This example uses mock materials only."
+  }
+}

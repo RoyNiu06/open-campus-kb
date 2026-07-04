@@ -1,0 +1,61 @@
+{
+  "project": {
+    "id": "your-campus-kb",
+    "name": "Your Campus KB",
+    "domain": "kb.example.edu",
+    "version": "0.1.0",
+    "official": false
+  },
+  "locales": ["en"],
+  "branding": {
+    "en": {
+      "brandSub": "Reviewed knowledge base and AI assistant",
+      "disclaimer": "This service is not an official institutional platform unless explicitly operated by your institution. Verify important matters with official sources.",
+      "chatEmpty": "Ask a question about your campus, programme, onboarding, facilities, or student life. Answers should be grounded in reviewed sources whenever possible."
+    }
+  },
+  "categories": [
+    {
+      "id": "onboarding",
+      "label": { "en": "Onboarding" }
+    },
+    {
+      "id": "academics",
+      "label": { "en": "Academics" }
+    },
+    {
+      "id": "housing",
+      "label": { "en": "Housing" }
+    },
+    {
+      "id": "student_life",
+      "label": { "en": "Student life" }
+    },
+    {
+      "id": "policy",
+      "label": { "en": "Policy" }
+    }
+  ],
+  "sourceTrustTiers": [
+    {
+      "id": "institution_official",
+      "rank": 1,
+      "label": { "en": "Institution official" }
+    },
+    {
+      "id": "recognized_group",
+      "rank": 2,
+      "label": { "en": "Recognized group" }
+    },
+    {
+      "id": "community_notes",
+      "rank": 3,
+      "label": { "en": "Community notes" }
+    }
+  ],
+  "usageLimits": {
+    "anonymousPoints": 30,
+    "windowHours": 5,
+    "windowBudgetCny": 0.5
+  }
+}
