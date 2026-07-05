@@ -2,7 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "open-campus-kb",
   "main": "worker/open-campus-worker.mjs",
-  "compatibility_date": "2026-07-03",
+  "compatibility_date": "2026-06-16",
   "r2_buckets": [
     {
       "binding": "DOC_BUCKET",
@@ -10,4 +10,3 @@
     }
   ]
 }
-

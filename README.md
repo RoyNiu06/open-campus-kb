@@ -64,10 +64,10 @@ open-campus-kb/
 ```bash
 npm install
 npm run check
-npm run dev
+npm run preview
 ```
 
-Then open the local Wrangler URL. The default Worker serves:
+Then open `http://127.0.0.1:8788`. The default Worker serves:
 
 - `/` source-grounded mock Q&A
 - `/kb/` reviewed mock knowledge cards
@@ -79,6 +79,12 @@ Then open the local Wrangler URL. The default Worker serves:
 - `/health` health check
 
 The example intentionally works without OpenRouter, Supabase, R2, Turnstile, or a login system. Production deployments should replace the mock retrieval with a real vector store and reviewed ingestion pipeline.
+
+If you specifically want to test Cloudflare Wrangler locally, use:
+
+```bash
+npm run dev
+```
 
 ## Generate Seed JSON
 

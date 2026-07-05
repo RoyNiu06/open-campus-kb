@@ -17,6 +17,7 @@
     "check": "node --check worker/open-campus-worker.mjs",
     "seed:example": "node scripts/seed-example-documents.mjs",
     "check:release": "node scripts/check-release.mjs",
+    "preview": "node scripts/serve-local.mjs",
     "dev": "wrangler dev --config wrangler.example.jsonc",
     "deploy": "wrangler deploy --config wrangler.example.jsonc"
   },

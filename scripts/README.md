@@ -7,6 +7,7 @@ This folder contains ingestion, maintenance, and release helper scripts.
 ```bash
 npm run seed:example
 npm run check:release
+npm run preview
 ```
 
 ## `seed-example-documents.mjs`
@@ -22,6 +23,10 @@ Runs a lightweight release readiness check:
 - Worker syntax is valid
 - seed script returns documents
 - common secret patterns are not present
+
+## `serve-local.mjs`
+
+Starts a small Node.js preview server at `http://127.0.0.1:8788`. It calls the same Worker `fetch` handler but does not require Wrangler, Cloudflare credentials, or local R2 emulation.
 
 ## Planned Production Scripts
 
