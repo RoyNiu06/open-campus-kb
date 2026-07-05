@@ -9,7 +9,7 @@ It started from the production experience of **CityUInfo**, a non-official fresh
 
 - Live production reference: [CityUInfo](https://cityuinfo.royilab.com)
 - Repository: [RoyNiu06/open-campus-kb](https://github.com/RoyNiu06/open-campus-kb)
-- Current example version: `v2.0.0-example`
+- Current example version: `v2.4.0-example`
 
 ## Project Overview
 
@@ -41,7 +41,8 @@ The project is intentionally modular and early-stage. It leaves room for future 
 ## What This Repository Contains
 
 - A runnable local demo with mock documents and source-grounded chat.
-- A Cloudflare Worker-style API and frontend demo.
+- A production-shaped example with a Next `app/` frontend for Cloudflare Pages and a Worker API.
+- A legacy all-in-one Worker preview for low-friction local testing.
 - A generic campus template under `templates/campus-template`.
 - A desensitized `examples/cityuinfo` example with mock seed documents.
 - Supabase schema scaffolding for reviewed documents, chunks, questions, and feedback.
@@ -70,39 +71,58 @@ git clone https://github.com/RoyNiu06/open-campus-kb.git
 cd open-campus-kb
 npm install
 npm run check
-npm run preview
+npm run app:dev
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8788
+http://127.0.0.1:3000
 ```
 
-The local preview serves:
+The Pages-style app serves:
 
 - `/` mock source-grounded Q&A
 - `/kb/` reviewed mock knowledge cards
-- `/upload/` upload review flow demo
-- `/about/` project and safety explanation
+- `/upload/` file, text, and link upload review flow demo
+- `/about/` project, architecture, feedback, and safety explanation
+
+For a production-shaped local split, run the Worker API in one terminal:
+
+```bash
+npm run dev
+```
+
+Then run the Pages frontend in another terminal:
+
+```bash
+NEXT_PUBLIC_OPEN_CAMPUS_API_BASE=http://127.0.0.1:8788 npm run app:dev
+```
+
+The Worker API provides:
+
 - `/api/chat` mock retrieval answer API
 - `/api/upload` mock pending-upload API
 - `/api/documents` mock document API
+- `/api/feedback` mock feedback API
+- `/api/email-notification` mock update notification API
 - `/health` health check
 
 The local demo intentionally works without OpenRouter, Supabase, R2, Turnstile, or a login system. Production deployments should replace mock retrieval with a real vector store and reviewed ingestion pipeline.
 
-If you specifically want to test the Worker through Wrangler:
+If you want the older all-in-one Worker preview:
 
 ```bash
-npm run dev
+npm run preview
 ```
 
 ## Useful Commands
 
 ```bash
 npm run check          # Worker syntax check
-npm run preview        # Local Node preview at 127.0.0.1:8788
+npm run app:dev        # Next app frontend at 127.0.0.1:3000
+npm run pages:build    # Static export prepared for Cloudflare Pages
+npm run preview        # Legacy all-in-one Worker preview at 127.0.0.1:8788
 npm run seed:example   # Parse mock CityUInfo seed documents into JSON
 npm run check:release  # Release readiness and secret-pattern check
 ```
@@ -111,10 +131,13 @@ npm run check:release  # Release readiness and secret-pattern check
 
 ```text
 open-campus-kb/
+  app/                            Next app frontend for Pages-style deployment
+  components/                     shared frontend components
+  lib/                            example data and API client helpers
   worker/                         runnable mock Worker
   templates/campus-template/       generic starter template
   examples/cityuinfo/              desensitized CityUInfo-style example
-  scripts/                         preview, seed, and release checks
+  scripts/                         preview, Pages export, seed, and release checks
   supabase/                        schema scaffold
   docs/                            architecture and operator docs
   .env.example                     environment variable names only
@@ -125,8 +148,8 @@ open-campus-kb/
 
 For a real deployment, the recommended stack is:
 
-- Frontend: Cloudflare Pages, Vercel, or another static frontend host.
-- Backend API: Cloudflare Workers.
+- Frontend: Cloudflare Pages, Vercel, or another static frontend host. The example uses Next `app/` static export.
+- Backend API: Cloudflare Workers under `/api/*`.
 - Database: Supabase Postgres with `pgvector`, or another Postgres-compatible database.
 - File storage: Cloudflare R2 or another object store.
 - AI provider: OpenRouter, OpenAI, Anthropic, Gemini, DeepSeek, local models, or another provider.

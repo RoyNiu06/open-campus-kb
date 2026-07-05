@@ -9,10 +9,34 @@ Example mode is the default in this repository.
 ```bash
 npm install
 npm run check
+npm run app:dev
+```
+
+The default app demo uses the Next `app/` frontend with embedded mock data and a safe local API fallback. It does not require Supabase, R2, Turnstile, OpenRouter, or authentication.
+
+To mirror the production split locally, run the Worker API in one terminal:
+
+```bash
 npm run dev
 ```
 
-It uses embedded mock documents and keyword retrieval. It does not require Supabase, R2, Turnstile, OpenRouter, or authentication.
+Then point the frontend at that API in another terminal:
+
+```bash
+NEXT_PUBLIC_OPEN_CAMPUS_API_BASE=http://127.0.0.1:8788 npm run app:dev
+```
+
+To prepare static output for Cloudflare Pages:
+
+```bash
+npm run pages:build
+```
+
+The legacy all-in-one Worker preview remains available:
+
+```bash
+npm run preview
+```
 
 ## Production Mode
 
@@ -52,6 +76,16 @@ npx wrangler deploy --config wrangler.example.jsonc --dry-run
 ```
 
 Dry run should succeed before publishing a release.
+
+## Cloudflare Pages Build
+
+Suggested Pages settings for the example frontend:
+
+- Build command: `npm run pages:build`
+- Output directory: `out`
+- Public API variable for split deployments: `NEXT_PUBLIC_OPEN_CAMPUS_API_BASE`
+
+For same-domain production, route `/api/*` to the Worker and leave the frontend static on Pages.
 
 ## Rollback Strategy
 

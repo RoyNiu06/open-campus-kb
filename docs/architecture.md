@@ -39,6 +39,20 @@ Upload or admin seed document
 
 The repository ships with a mock example mode so contributors can understand the product without provisioning cloud services.
 
+## Current Example Deployment Shape
+
+The current example mirrors the newer CityUInfo deployment boundary:
+
+```text
+Cloudflare Pages or static host
+-> Next app frontend under app/
+-> browser calls /api/*
+-> Cloudflare Worker API
+-> mock retrieval in this repo, real database/vector search in production
+```
+
+The old all-in-one Worker preview is still kept for low-friction local testing, but new frontend work should happen in `app/` and `components/`. The Worker should stay focused on backend APIs, secrets, ingestion, retrieval, usage limits, and feedback storage.
+
 ```text
 Example mode
 -> embedded mock documents

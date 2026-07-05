@@ -10,7 +10,19 @@ const requiredFiles = [
   "SECURITY.md",
   "CODE_OF_CONDUCT.md",
   ".env.example",
+  "next.config.mjs",
   "wrangler.example.jsonc",
+  "app/layout.tsx",
+  "app/page.tsx",
+  "app/kb/page.tsx",
+  "app/upload/page.tsx",
+  "app/about/page.tsx",
+  "app/globals.css",
+  "components/app-shell.tsx",
+  "components/chat-panel.tsx",
+  "lib/example-data.ts",
+  "lib/api.ts",
+  "scripts/prepare-next-pages.mjs",
   "worker/open-campus-worker.mjs",
   "docs/architecture.md",
   "docs/adaptation-guide.md",
@@ -36,11 +48,14 @@ const secretPatterns = [
   /OPENROUTER_API_KEY[ \t]*=[ \t]*[^\r\n#]+/g
 ];
 
-const ignoredDirs = new Set(["node_modules", ".wrangler", ".git"]);
+const ignoredDirs = new Set(["node_modules", ".wrangler", ".git", ".next", "out", "tmp"]);
 const textExtensions = new Set([
   ".md",
   ".mjs",
   ".js",
+  ".ts",
+  ".tsx",
+  ".css",
   ".json",
   ".jsonc",
   ".sql",

@@ -2,7 +2,7 @@ const CAMPUS = {
   project: {
     id: "cityuinfo-example",
     name: "CityUInfo Example",
-    version: "2.0.0-example",
+    version: "2.4.0-example",
     official: false
   },
   locales: ["zh-CN", "zh-HK", "en"],
@@ -144,7 +144,12 @@ function searchDocuments(question) {
   return (scored.length ? scored : DOCUMENTS.slice(0, 2).map((doc) => ({ doc, score: 0 })))
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
-    .map((item, index) => ({ ...item.doc, score: item.score, citation: index + 1 }));
+    .map((item, index) => ({
+      ...item.doc,
+      score: item.score,
+      citation: index + 1,
+      relevance: item.score ? Math.min(96, 58 + item.score * 12) : 36
+    }));
 }
 
 function answerFromSources(question, locale) {
@@ -160,9 +165,12 @@ function answerFromSources(question, locale) {
       id: source.id,
       title: source.title,
       category: source.category,
+      tag: source.category,
       source_type: source.source_type,
       file_type: source.file_type,
-      applicable_year: source.applicable_year
+      applicable_year: source.applicable_year,
+      citation: source.citation,
+      relevance: source.relevance
     }))
   };
 }
@@ -184,6 +192,29 @@ async function uploadDemo(request) {
     status: "pending_demo",
     title,
     message: "Demo upload accepted. Production deployments should store files privately and wait for admin review before ingestion."
+  }, { status: 202 });
+}
+
+async function feedbackDemo(request) {
+  const body = await request.json().catch(() => ({}));
+  return json({
+    ok: true,
+    status: "stored_demo",
+    type: body.type || "suggestion",
+    message: "Demo feedback accepted. Production deployments should store feedback server-side with rate limits and abuse checks."
+  }, { status: 202 });
+}
+
+async function emailNotificationDemo(request) {
+  if (request.method === "DELETE") {
+    return json({ ok: true, status: "deleted_demo" });
+  }
+  const body = await request.json().catch(() => ({}));
+  return json({
+    ok: true,
+    status: "bound_demo",
+    email: String(body.email || "").slice(0, 160),
+    message: "Demo notification address accepted. Production deployments should verify consent and protect this data."
   }, { status: 202 });
 }
 
@@ -237,9 +268,14 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     if (url.pathname === "/health") return json({ ok: true, project: "open-campus-kb", example: CAMPUS.project.id });
+    if (url.pathname === "/api/status") return json({ ok: true, version: CAMPUS.project.version, mode: "mock" });
     if (url.pathname === "/api/config") return json(CAMPUS);
     if (url.pathname === "/api/documents") return json({ documents: DOCUMENTS });
     if (url.pathname === "/api/upload" && request.method === "POST") return uploadDemo(request);
+    if (url.pathname === "/api/feedback" && request.method === "POST") return feedbackDemo(request);
+    if (url.pathname === "/api/email-notification" && ["POST", "DELETE"].includes(request.method)) {
+      return emailNotificationDemo(request);
+    }
     if (url.pathname === "/api/chat" && request.method === "POST") {
       const body = await request.json().catch(() => ({}));
       const question = String(body.question || "").trim();

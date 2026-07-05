@@ -1,5 +1,7 @@
 node_modules/
 .wrangler/
+.next/
+out/
 .dev.vars
 .env
 .env.*
@@ -9,4 +11,3 @@ __pycache__/
 tmp/
 dist/
 .DS_Store
-

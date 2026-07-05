@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.4.0-example - 2026-07-05
+
+- Added a Next `app/` frontend example aligned with the current Pages + Workers production shape.
+- Kept the Worker as a mock API layer for chat, uploads, feedback, email notification, documents, and status.
+- Added file/text/link upload UI modes, citation numbers, relevance score chips, and lightweight reaction controls to the example.
+- Updated documentation to distinguish the Pages frontend from the legacy all-in-one Worker preview.
+
 ## v2.0.0-example - 2026-07-04
 
 - Added runnable mock Cloudflare Worker example.

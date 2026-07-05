@@ -4,6 +4,12 @@ This file remembers CityUInfo production changes that may later be extracted int
 
 The production site can move faster than the open-source framework. Record small production changes here, then batch them into a future OpenCampusKB release when they are stable and generic.
 
+## 2026-07-05 v2.4.0 Example Sync
+
+- Synced the open-source CityUInfo example toward the current production architecture: Next `app/` frontend on Pages plus Worker `/api/*`.
+- Added generic UI examples for citation numbering, relevance score chips, reactions, feedback entry points, update notification email binding, and file/text/link uploads.
+- Kept production-only data, real PDFs, admin credentials, logs, and service secrets out of the open-source repo.
+
 ## 2026-07-04 v2 Shape
 
 - CityUInfo production moved to a Pages frontend with Worker `/api/*` backend.

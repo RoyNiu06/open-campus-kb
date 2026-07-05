@@ -14,6 +14,8 @@ It is inspired by the CityUInfo production site, but it intentionally uses mock 
 - Disclaimer and privacy copy
 - Mock source-grounded Q&A without external model calls
 - Upload review flow shape without storing real files
+- A Pages-style Next `app/` frontend similar to the current CityUInfo production structure
+- A Worker API boundary for `/api/chat`, `/api/upload`, feedback, and email notification mocks
 
 ## What This Example Does Not Include
 
@@ -39,7 +41,9 @@ From the repository root:
 ```bash
 npm install
 npm run check
-npm run dev
+npm run app:dev
 ```
 
-The demo Worker embeds this example data and provides a mock `/api/chat` endpoint. It is meant for product shape and onboarding, not answer quality benchmarking.
+For a production-shaped split, run `npm run dev` for the Worker API and `NEXT_PUBLIC_OPEN_CAMPUS_API_BASE=http://127.0.0.1:8788 npm run app:dev` for the Pages frontend.
+
+The demo embeds this example data and provides mock API endpoints. It is meant for product shape and onboarding, not answer quality benchmarking.
