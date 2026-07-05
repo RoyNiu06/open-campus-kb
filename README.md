@@ -1,5 +1,6 @@
 # OpenCampusKB
-
+# STILL UNDER PROCESS! RECOMMAND TO DOWNLOAD FEWS DAYS LATER!
+# 仍在快速更新中，建议几天后下载
 OpenCampusKB is an open-source framework for building reviewed, source-grounded knowledge bases and AI Q&A assistants.
 
 [中文说明 / Chinese README](README_CN.md)
