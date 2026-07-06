@@ -3,90 +3,59 @@
     "id": "cityuinfo-example",
     "name": "CityUInfo Example",
     "domain": "cityuinfo.example.com",
-    "version": "2.4.0-example",
+    "version": "3.0.1-example",
     "official": false
+  },
+  "reference": {
+    "productionSite": "https://cityuinfo.royilab.com",
+    "openSourceRepo": "https://github.com/RoyNiu06/open-campus-kb",
+    "plannerUrl": "https://example.edu/study-planner"
   },
   "locales": ["zh-CN", "zh-HK", "en"],
   "branding": {
     "zh-CN": {
-      "brandSub": "Unofficial freshman information assistant",
-      "disclaimer": "This is a public example project, not an official university platform. Always verify important matters with official notices.",
-      "chatEmpty": "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. Answers should be grounded in reviewed sources whenever possible."
+      "brandSub": "非官方新生资料助手示例",
+      "disclaimer": "这是公开脱敏示例，不是大学官方平台。重要事项请以官方通知为准。",
+      "chatEmpty": "可以询问入学注册、课程与专业、宿舍、签注、校园账号、校园信息和香港生活。"
     },
     "zh-HK": {
-      "brandSub": "Unofficial freshman information assistant",
-      "disclaimer": "This is a public example project, not an official university platform. Always verify important matters with official notices.",
-      "chatEmpty": "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. Answers should be grounded in reviewed sources whenever possible."
+      "brandSub": "非官方新生資料助手示例",
+      "disclaimer": "這是公開脫敏示例，不是大學官方平台。重要事項請以官方通知為準。",
+      "chatEmpty": "可以查詢入學註冊、課程與專業、宿舍、簽注、校園帳號、校園資訊和香港生活。"
     },
     "en": {
-      "brandSub": "Unofficial freshman information assistant",
-      "disclaimer": "This example project is not an official university platform. Always verify important matters with official notices.",
-      "chatEmpty": "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. Answers should be grounded in reviewed sources whenever possible."
+      "brandSub": "Unofficial freshman information assistant example",
+      "disclaimer": "This is a public desensitized example, not an official university platform. Always verify important matters with official notices.",
+      "chatEmpty": "Ask about admission, courses, residence, endorsement, campus accounts, campus information, and Hong Kong life."
     }
   },
-  "categories": [
-    {
-      "id": "pre_arrival",
-      "label": {
-        "zh-CN": "Pre-arrival",
-        "zh-HK": "Pre-arrival",
-        "en": "Pre-arrival"
-      }
-    },
-    {
-      "id": "course_registration",
-      "label": {
-        "zh-CN": "Course registration",
-        "zh-HK": "Course registration",
-        "en": "Course registration"
-      }
-    },
-    {
-      "id": "housing",
-      "label": {
-        "zh-CN": "Housing",
-        "zh-HK": "Housing",
-        "en": "Housing"
-      }
-    },
-    {
-      "id": "student_life",
-      "label": {
-        "zh-CN": "Student life",
-        "zh-HK": "Student life",
-        "en": "Student life"
-      }
-    }
+  "tags": [
+    { "id": "admission_registration", "label": { "zh-CN": "入学注册", "zh-HK": "入學註冊", "en": "Admission" } },
+    { "id": "courses_programmes", "label": { "zh-CN": "课程与专业", "zh-HK": "課程與專業", "en": "Courses" } },
+    { "id": "residence", "label": { "zh-CN": "宿舍", "zh-HK": "宿舍", "en": "Residence" } },
+    { "id": "endorsement_id", "label": { "zh-CN": "签注与身份", "zh-HK": "簽注與身份", "en": "Endorsement" } },
+    { "id": "it_accounts", "label": { "zh-CN": "IT 与账号", "zh-HK": "IT 與帳號", "en": "IT" } },
+    { "id": "campus_info", "label": { "zh-CN": "校园信息", "zh-HK": "校園資訊", "en": "Campus" } },
+    { "id": "hk_life", "label": { "zh-CN": "香港生活", "zh-HK": "香港生活", "en": "HK life" } },
+    { "id": "encyclopedia", "label": { "zh-CN": "综合百科", "zh-HK": "綜合百科", "en": "Encyclopedia" }, "exclusive": true },
+    { "id": "other", "label": { "zh-CN": "其他", "zh-HK": "其他", "en": "Other" } }
   ],
   "sourceTrustTiers": [
-    {
-      "id": "school_official",
-      "rank": 1,
-      "label": {
-        "zh-CN": "School official",
-        "zh-HK": "School official",
-        "en": "School official"
-      }
-    },
-    {
-      "id": "student_union_official",
-      "rank": 2,
-      "label": {
-        "zh-CN": "Student organization official",
-        "zh-HK": "Student organization official",
-        "en": "Student organization official"
-      }
-    },
-    {
-      "id": "student_notes",
-      "rank": 3,
-      "label": {
-        "zh-CN": "Student notes",
-        "zh-HK": "Student notes",
-        "en": "Student notes"
-      }
-    }
+    { "id": "school_official", "rank": 1, "label": { "zh-CN": "学校官方", "zh-HK": "學校官方", "en": "School official" } },
+    { "id": "student_union_official", "rank": 2, "label": { "zh-CN": "学生组织官方", "zh-HK": "學生組織官方", "en": "Student organization official" } },
+    { "id": "student_notes", "rank": 3, "label": { "zh-CN": "同学整理", "zh-HK": "同學整理", "en": "Student notes" } }
   ],
+  "uploadModes": ["file", "text", "link", "batch"],
+  "routingModes": {
+    "rag": "General reviewed document retrieval.",
+    "course_engine": "Structured programme/course engine for precise course-like questions.",
+    "hybrid": "Combine structured engine output with RAG evidence when both are useful."
+  },
+  "embedding": {
+    "productionReferenceModel": "qwen/qwen3-embedding-8b",
+    "cloudflareBgeM3Evaluated": true,
+    "migrationRecommendation": "Keep the current model unless a benchmark shows better answer quality after full re-embedding."
+  },
   "usageLimits": {
     "anonymousPoints": 30,
     "windowHours": 5,

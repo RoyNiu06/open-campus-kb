@@ -4,6 +4,14 @@ This file remembers CityUInfo production changes that may later be extracted int
 
 The production site can move faster than the open-source framework. Record small production changes here, then batch them into a future OpenCampusKB release when they are stable and generic.
 
+## 2026-07-06 v3.0.1 Example Sync
+
+- CityUInfo production added a route layer for course-like questions, with Course Engine, RAG, and hybrid paths.
+- Production added structured course-data ingestion and improved answer quality/speed for course questions; the open-source repo keeps only mock structured examples.
+- Production added streaming-style answer UX and timing logs such as pre-chat latency, first-delta latency, and total latency. The open-source Worker now exposes compatible mock fields.
+- Production tested Cloudflare `@cf/baai/bge-m3` against the current Qwen embedding baseline. No default migration is included in the open-source template; deployments should benchmark before re-embedding.
+- Production continued to evolve feedback, email notification, upload, tags, publication month, metadata header, and source relevance UI. Generic versions are reflected in the example/template, without private rows or real documents.
+
 ## 2026-07-05 v2.4.0 Example Sync
 
 - Synced the open-source CityUInfo example toward the current production architecture: Next `app/` frontend on Pages plus Worker `/api/*`.

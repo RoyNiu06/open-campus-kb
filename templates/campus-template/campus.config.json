@@ -1,8 +1,8 @@
 {
   "project": {
-    "id": "your-campus-kb",
-    "name": "Your Campus KB",
-    "domain": "kb.example.edu",
+    "id": "your-organization-kb",
+    "name": "Your Organization KB",
+    "domain": "kb.example.org",
     "version": "0.1.0",
     "official": false
   },
@@ -11,48 +11,31 @@
     "en": {
       "brandSub": "Reviewed knowledge base and AI assistant",
       "disclaimer": "This service is not an official institutional platform unless explicitly operated by your institution. Verify important matters with official sources.",
-      "chatEmpty": "Ask a question about your campus, programme, onboarding, facilities, or student life. Answers should be grounded in reviewed sources whenever possible."
+      "chatEmpty": "Ask a question about onboarding, policies, projects, services, facilities, or community life. Answers should be grounded in reviewed sources whenever possible."
     }
   },
-  "categories": [
-    {
-      "id": "onboarding",
-      "label": { "en": "Onboarding" }
-    },
-    {
-      "id": "academics",
-      "label": { "en": "Academics" }
-    },
-    {
-      "id": "housing",
-      "label": { "en": "Housing" }
-    },
-    {
-      "id": "student_life",
-      "label": { "en": "Student life" }
-    },
-    {
-      "id": "policy",
-      "label": { "en": "Policy" }
-    }
+  "tags": [
+    { "id": "onboarding", "label": { "en": "Onboarding" } },
+    { "id": "programmes_or_products", "label": { "en": "Programmes / Products" } },
+    { "id": "operations", "label": { "en": "Operations" } },
+    { "id": "accounts_it", "label": { "en": "Accounts / IT" } },
+    { "id": "people_and_teams", "label": { "en": "People / Teams" } },
+    { "id": "facilities", "label": { "en": "Facilities" } },
+    { "id": "policy", "label": { "en": "Policy" } },
+    { "id": "encyclopedia", "label": { "en": "Encyclopedia" }, "exclusive": true },
+    { "id": "other", "label": { "en": "Other" } }
   ],
   "sourceTrustTiers": [
-    {
-      "id": "institution_official",
-      "rank": 1,
-      "label": { "en": "Institution official" }
-    },
-    {
-      "id": "recognized_group",
-      "rank": 2,
-      "label": { "en": "Recognized group" }
-    },
-    {
-      "id": "community_notes",
-      "rank": 3,
-      "label": { "en": "Community notes" }
-    }
+    { "id": "institution_official", "rank": 1, "label": { "en": "Institution official" } },
+    { "id": "recognized_group", "rank": 2, "label": { "en": "Recognized group" } },
+    { "id": "community_notes", "rank": 3, "label": { "en": "Community notes" } }
   ],
+  "uploadModes": ["file", "text", "link", "batch"],
+  "routingModes": {
+    "rag": "General reviewed document retrieval.",
+    "domain_engine": "Structured engine for high-precision domain questions, such as courses, company policies, project runbooks, or product catalogs.",
+    "hybrid": "Combine structured engine output with RAG evidence when both are useful."
+  },
   "usageLimits": {
     "anonymousPoints": 30,
     "windowHours": 5,

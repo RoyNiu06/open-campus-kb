@@ -1,6 +1,6 @@
 {
   "name": "open-campus-kb",
-  "version": "2.4.0-example",
+  "version": "3.0.1-example",
   "description": "Open-source framework for reviewed, source-grounded campus knowledge bases and AI Q&A assistants.",
   "license": "MIT",
   "private": false,

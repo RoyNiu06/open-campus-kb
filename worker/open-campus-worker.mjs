@@ -2,71 +2,28 @@ const CAMPUS = {
   project: {
     id: "cityuinfo-example",
     name: "CityUInfo Example",
-    version: "2.4.0-example",
+    version: "v3.0.1-example",
     official: false
   },
   locales: ["zh-CN", "zh-HK", "en"],
-  categories: {
-    pre_arrival: { "zh-CN": "Pre-arrival", "zh-HK": "Pre-arrival", en: "Pre-arrival" },
-    course_registration: { "zh-CN": "Course registration", "zh-HK": "Course registration", en: "Course registration" },
-    housing: { "zh-CN": "Housing", "zh-HK": "Housing", en: "Housing" },
-    student_life: { "zh-CN": "Student life", "zh-HK": "Student life", en: "Student life" },
-    review_policy: { "zh-CN": "Review policy", "zh-HK": "Review policy", en: "Review policy" }
+  repo: "https://github.com/RoyNiu06/open-campus-kb",
+  liveReference: "https://cityuinfo.royilab.com",
+  plannerUrl: "https://example.edu/study-planner",
+  tags: {
+    admission_registration: { "zh-CN": "入学注册", "zh-HK": "入學註冊", en: "Admission" },
+    courses_programmes: { "zh-CN": "课程与专业", "zh-HK": "課程與專業", en: "Courses" },
+    residence: { "zh-CN": "宿舍", "zh-HK": "宿舍", en: "Residence" },
+    endorsement_id: { "zh-CN": "签注与身份", "zh-HK": "簽注與身份", en: "Endorsement" },
+    it_accounts: { "zh-CN": "IT 与账号", "zh-HK": "IT 與帳號", en: "IT" },
+    campus_info: { "zh-CN": "校园信息", "zh-HK": "校園資訊", en: "Campus" },
+    hk_life: { "zh-CN": "香港生活", "zh-HK": "香港生活", en: "HK life" },
+    encyclopedia: { "zh-CN": "综合百科", "zh-HK": "綜合百科", en: "Encyclopedia" },
+    other: { "zh-CN": "其他", "zh-HK": "其他", en: "Other" }
   },
   trust: {
-    school_official: { "zh-CN": "School official", "zh-HK": "School official", en: "School official" },
-    student_union_official: { "zh-CN": "Student organization official", "zh-HK": "Student organization official", en: "Student organization official" },
-    student_notes: { "zh-CN": "Student notes", "zh-HK": "Student notes", en: "Student notes" }
-  },
-  copy: {
-    "zh-CN": {
-      brandSub: "Unofficial freshman info assistant",
-      ask: "Ask OpenCampusKB",
-      subtitle: "This example uses mock materials to demonstrate source-grounded Q&A, knowledge browsing, and reviewed uploads.",
-      placeholder: "Example: What should I prepare before arrival?",
-      send: "Send",
-      reset: "Reset",
-      nav: { ask: "Ask", kb: "Knowledge", upload: "Upload", about: "About" },
-      noContext: "The example knowledge base does not contain enough reliable material. Add reviewed sources or check official information.",
-      sources: "Sources",
-      uploadTitle: "Upload Material",
-      uploadBody: "This open-source example only demonstrates the submission workflow. In production, uploaded files should stay pending until admin review.",
-      aboutTitle: "About OpenCampusKB",
-      aboutBody: "OpenCampusKB is an open-source framework for campus knowledge bases and AI Q&A assistants. This CityUInfo example uses mock, desensitized data only.",
-      chatEmpty: "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. This example uses mock materials only."
-    },
-    "zh-HK": {
-      brandSub: "Unofficial freshman info assistant",
-      ask: "Ask OpenCampusKB",
-      subtitle: "This example uses mock materials to demonstrate source-grounded Q&A, knowledge browsing, and reviewed uploads.",
-      placeholder: "Example: What should I prepare before arrival?",
-      send: "Send",
-      reset: "Reset",
-      nav: { ask: "Ask", kb: "Knowledge", upload: "Upload", about: "About" },
-      noContext: "The example knowledge base does not contain enough reliable material. Add reviewed sources or check official information.",
-      sources: "Sources",
-      uploadTitle: "Upload Material",
-      uploadBody: "This open-source example only demonstrates the submission workflow. In production, uploaded files should stay pending until admin review.",
-      aboutTitle: "About OpenCampusKB",
-      aboutBody: "OpenCampusKB is an open-source framework for campus knowledge bases and AI Q&A assistants. This CityUInfo example uses mock, desensitized data only.",
-      chatEmpty: "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. This example uses mock materials only."
-    },
-    en: {
-      brandSub: "Unofficial freshman info assistant",
-      ask: "Ask OpenCampusKB",
-      subtitle: "This example uses mock materials to demonstrate source-grounded Q&A, knowledge browsing, and reviewed uploads.",
-      placeholder: "Example: What should I prepare before arrival?",
-      send: "Send",
-      reset: "Reset",
-      nav: { ask: "Ask", kb: "Knowledge", upload: "Upload", about: "About" },
-      noContext: "The example knowledge base does not contain enough reliable material. Add reviewed sources or check official information.",
-      sources: "Sources",
-      uploadTitle: "Upload Material",
-      uploadBody: "This open-source example only demonstrates the submission workflow. In production, uploaded files should stay pending until admin review.",
-      aboutTitle: "About OpenCampusKB",
-      aboutBody: "OpenCampusKB is an open-source framework for campus knowledge bases and AI Q&A assistants. This CityUInfo example uses mock, desensitized data only.",
-      chatEmpty: "Ask about enrolment, course registration, housing, entry endorsement, campus accounts, or student life. This example uses mock materials only."
-    }
+    school_official: { "zh-CN": "学校官方", "zh-HK": "學校官方", en: "School official" },
+    student_union_official: { "zh-CN": "学生组织官方", "zh-HK": "學生組織官方", en: "Student organization official" },
+    student_notes: { "zh-CN": "同学整理", "zh-HK": "同學整理", en: "Student notes" }
   }
 };
 
@@ -74,57 +31,46 @@ const DOCUMENTS = [
   {
     id: "pre-arrival-checklist",
     title: "Pre-arrival Checklist Example",
-    category: "pre_arrival",
+    tags: ["admission_registration", "hk_life"],
     source_type: "student_notes",
     file_type: "markdown",
-    applicable_year: "2026/27",
+    published_month: "2026-07",
     summary: "Mock checklist for documents, accommodation, arrival, account activation, and local setup.",
-    text: "Before departure, students should check official admission portal deadlines, prepare identity documents and admission letters, confirm accommodation arrangements, save emergency contacts, and plan arrival. After arrival, they should activate the campus account, check email and student portal access, prepare for course registration, and set up local transportation and payment tools. Dates and requirements may change and should be verified with official sources."
+    text: "Before departure, students should check official deadlines, prepare identity documents and admission letters, confirm accommodation arrangements, save emergency contacts, and plan arrival."
   },
   {
     id: "course-registration-faq",
     title: "Course Registration FAQ Example",
-    category: "course_registration",
+    tags: ["courses_programmes"],
     source_type: "student_notes",
     file_type: "markdown",
-    applicable_year: "2026/27",
+    published_month: "2026-07",
     summary: "Mock FAQ for course requirements, registration periods, waitlists, and uncertainty handling.",
-    text: "Students should check official programme requirements, course offering lists, prerequisite rules, and registration periods. If a course is full, students should follow the official waitlist or add/drop procedure. The assistant should not promise seat availability or invent registration dates, quota rules, or department exceptions when reliable material is missing."
+    text: "Students should check programme requirements, course offering lists, prerequisite rules, and registration periods. If a course is full, follow the official waitlist or add/drop procedure."
   },
   {
-    id: "housing-faq",
-    title: "Housing FAQ Example",
-    category: "housing",
-    source_type: "student_notes",
-    file_type: "markdown",
-    applicable_year: "2026/27",
-    summary: "Mock housing FAQ for check-in preparation and privacy boundaries.",
-    text: "For housing check-in, students may need identity documents, admission information, payment records, and documents requested by the housing office. Answers should include source names, applicable year, and a reminder to check the latest official housing notice. Do not include private room assignments, personal contact details, or unverified group chat rumours."
-  },
-  {
-    id: "student-life-faq",
-    title: "Student Life FAQ Example",
-    category: "student_life",
-    source_type: "student_notes",
-    file_type: "markdown",
-    applicable_year: "2026/27",
-    summary: "Mock student life FAQ for campus account, Wi-Fi, library, email, transport, phone plans, and banking.",
-    text: "Common student life topics include campus account setup, Wi-Fi access, library services, student email, transportation, local phone plans, and bank account preparation. For official services, answers should prioritize university pages and official emails. For local life tips, answers may use student notes but should label them as community experience."
+    id: "mock-course-engine",
+    title: "Course Engine Mock Programme Data",
+    tags: ["courses_programmes"],
+    source_type: "school_official",
+    file_type: "short_text",
+    published_month: "2026-07",
+    summary: "Mock structured programme and course evidence for the Course Engine route.",
+    text: "The Course Engine stores structured programme profiles, study plan rows, course codes, credits, prerequisites, assessment notes, and official catalogue links."
   },
   {
     id: "upload-review-policy",
     title: "Upload Review Policy Example",
-    category: "review_policy",
+    tags: ["encyclopedia"],
     source_type: "school_official",
     file_type: "markdown",
-    applicable_year: "2026/27",
+    published_month: "2026-07",
     summary: "Mock policy showing why uploaded files require admin review before becoming searchable.",
-    text: "Uploaded files should not enter the searchable knowledge base automatically. Admin review should check whether the source is clear, applicable year is clear, the file contains private personal information, the document is allowed to be summarized or cited, and whether it should be marked official, student organization official, or student notes. Admin actions include approve and ingest, reject, edit metadata and approve, archive, and delete."
+    text: "Uploaded files should not enter the searchable knowledge base automatically. Admin review should check source clarity, publication month, privacy, copyright, trust tier, manual weight, and ingestion status."
   }
 ];
 
 const norm = (value) => String(value || "").toLowerCase();
-const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 
 function json(data, init = {}) {
   return new Response(JSON.stringify(data), {
@@ -133,65 +79,112 @@ function json(data, init = {}) {
   });
 }
 
-function searchDocuments(question) {
+function detectRoute(question) {
+  if (/course|programme|program|major|credit|prerequisite|study plan|选课|選課|课程|課程|专业|專業|学分|學分|先修/i.test(question)) {
+    return "course_engine";
+  }
+  if (/upload|review|source|citation|feedback|knowledge|资料|資料|来源|來源|反馈|反饋/i.test(question)) {
+    return "hybrid";
+  }
+  return "rag";
+}
+
+function searchDocuments(question, engineMode) {
   const words = norm(question).split(/[^a-z0-9\u4e00-\u9fff]+/).filter((word) => word.length >= 2);
   const scored = DOCUMENTS.map((doc) => {
-    const haystack = norm(`${doc.title} ${doc.category} ${doc.summary} ${doc.text}`);
-    const score = words.reduce((sum, word) => sum + (haystack.includes(word) ? 1 : 0), 0);
-    return { doc, score };
-  }).filter((item) => item.score > 0);
-
-  return (scored.length ? scored : DOCUMENTS.slice(0, 2).map((doc) => ({ doc, score: 0 })))
+    const haystack = norm(`${doc.title} ${doc.tags.join(" ")} ${doc.source_type} ${doc.summary} ${doc.text}`);
+    const keywordScore = words.reduce((sum, word) => sum + (haystack.includes(word) ? 1 : 0), 0);
+    const routeBoost = engineMode === "course_engine" && doc.tags.includes("courses_programmes") ? 2 : 0;
+    const engineBoost = engineMode === "course_engine" && doc.id === "mock-course-engine" ? 3 : 0;
+    const trustBoost = doc.source_type === "school_official" ? 0.5 : 0;
+    return { doc, score: keywordScore + routeBoost + engineBoost + trustBoost };
+  });
+  return scored
     .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .map((item, index) => ({
-      ...item.doc,
-      score: item.score,
+    .slice(0, 4)
+    .map(({ doc, score }, index) => ({
+      ...doc,
       citation: index + 1,
-      relevance: item.score ? Math.min(96, 58 + item.score * 12) : 36
+      relevance: score ? Math.min(96, Math.round(48 + score * 9)) : 32
     }));
 }
 
-function answerFromSources(question, locale) {
-  const copy = CAMPUS.copy[locale] || CAMPUS.copy.en;
-  const sources = searchDocuments(question);
-  const hasSignal = sources.some((source) => source.score > 0);
+function buildAnswer(question, locale) {
+  const started = Date.now();
+  const engineMode = detectRoute(question);
+  const sources = searchDocuments(question, engineMode);
+  const routeLine =
+    engineMode === "course_engine"
+      ? "Course Engine route selected. "
+      : engineMode === "hybrid"
+        ? "Hybrid retrieval route selected. "
+        : "";
   const bullets = sources.map((source) => `- [${source.citation}] ${source.summary}`).join("\n");
-  const caveat = "This is mock content. Replace seed documents with reviewed campus sources before production use.";
 
   return {
-    answer: hasSignal ? `Based on the reviewed example knowledge base:\n\n${bullets}\n\n${caveat}` : copy.noContext,
+    engineMode,
+    answer: `${routeLine}This Worker demo used mock reviewed materials only.\n\n${bullets}\n\nReplace this demo with embeddings, a reviewed database, and real citations before production.`,
     sources: sources.map((source) => ({
       id: source.id,
       title: source.title,
-      category: source.category,
-      tag: source.category,
+      tags: source.tags,
       source_type: source.source_type,
       file_type: source.file_type,
-      applicable_year: source.applicable_year,
+      applicable_year: source.published_month,
       citation: source.citation,
       relevance: source.relevance
-    }))
+    })),
+    timings: {
+      pre_chat_ms: Date.now() - started,
+      first_delta_ms: 0,
+      total_ms: Date.now() - started
+    },
+    locale
   };
+}
+
+function streamChat(payload) {
+  const encoder = new TextEncoder();
+  const body = new ReadableStream({
+    start(controller) {
+      controller.enqueue(encoder.encode(`event: meta\ndata: ${JSON.stringify({ engineMode: payload.engineMode, sources: payload.sources, timings: payload.timings })}\n\n`));
+      const parts = payload.answer.match(/.{1,90}(\s|$)/g) || [payload.answer];
+      for (const part of parts) {
+        controller.enqueue(encoder.encode(`event: delta\ndata: ${JSON.stringify({ text: part })}\n\n`));
+      }
+      controller.enqueue(encoder.encode(`event: done\ndata: ${JSON.stringify({ ok: true })}\n\n`));
+      controller.close();
+    }
+  });
+  return new Response(body, {
+    headers: {
+      "content-type": "text/event-stream; charset=utf-8",
+      "cache-control": "no-store"
+    }
+  });
 }
 
 async function uploadDemo(request) {
   const contentType = request.headers.get("content-type") || "";
   let title = "Untitled demo upload";
+  let mode = "file";
 
   if (contentType.includes("application/json")) {
     const body = await request.json().catch(() => ({}));
     title = String(body.title || title).slice(0, 120);
+    mode = String(body.mode || mode);
   } else if (contentType.includes("multipart/form-data")) {
     const form = await request.formData().catch(() => null);
     title = String(form?.get("title") || title).slice(0, 120);
+    mode = String(form?.get("mode") || mode);
   }
 
   return json({
     ok: true,
     status: "pending_demo",
     title,
-    message: "Demo upload accepted. Production deployments should store files privately and wait for admin review before ingestion."
+    mode,
+    message: "Demo upload accepted. Production deployments should store material privately and wait for admin review before ingestion."
   }, { status: 202 });
 }
 
@@ -206,9 +199,7 @@ async function feedbackDemo(request) {
 }
 
 async function emailNotificationDemo(request) {
-  if (request.method === "DELETE") {
-    return json({ ok: true, status: "deleted_demo" });
-  }
+  if (request.method === "DELETE") return json({ ok: true, status: "deleted_demo" });
   const body = await request.json().catch(() => ({}));
   return json({
     ok: true,
@@ -216,52 +207,6 @@ async function emailNotificationDemo(request) {
     email: String(body.email || "").slice(0, 160),
     message: "Demo notification address accepted. Production deployments should verify consent and protect this data."
   }, { status: 202 });
-}
-
-function appHtml() {
-  const config = JSON.stringify({ campus: CAMPUS, documents: DOCUMENTS });
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenCampusKB CityUInfo Example</title>
-  <style>
-    :root{--bg:#f7f6f1;--surface:#fff;--ink:#17211f;--muted:#5d6a66;--line:#dce4df;--teal:#12736a;--amber:#b7791f}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}
-    header{position:sticky;top:0;background:rgba(247,246,241,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);z-index:2}.bar{display:flex;align-items:center;gap:16px;justify-content:space-between;width:min(1120px,calc(100% - 28px));min-height:64px;margin:auto}
-    .brand{font-weight:850}.brand small{display:block;color:var(--muted);font-size:12px}.nav,.lang,.actions{display:flex;gap:6px;align-items:center}.nav button,.lang button,.btn{border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);min-height:36px;padding:0 12px;font-weight:750}.nav button.active,.lang button.active,.btn.primary{border-color:var(--teal);background:var(--teal);color:#fff}
-    main{width:min(1120px,calc(100% - 28px));margin:auto;padding:24px 0 56px}.notice{margin-bottom:16px;padding:12px 14px;border:1px solid #eadfca;border-radius:8px;background:#fff7e6;color:#614318;font-weight:650}
-    .panel,.card{border:1px solid var(--line);border-radius:8px;background:#fff;padding:18px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.stack{display:grid;gap:14px}.chat{display:grid;grid-template-rows:1fr auto;height:min(660px,calc(100dvh - 150px));min-height:440px}.messages{overflow:auto;display:grid;align-content:start;gap:12px;padding:6px}.msg{max-width:78%;border:1px solid var(--line);border-radius:8px;background:#f4f8f6;padding:12px}.msg.user{justify-self:end;background:#e7f2ef}.msg pre{white-space:pre-wrap;margin:0}.form{display:grid;grid-template-columns:1fr 110px;gap:10px}.form textarea{min-height:48px;resize:vertical}.field{display:grid;gap:6px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}.chips{display:flex;gap:6px;flex-wrap:wrap}.tag{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--muted);font-size:12px;font-weight:750}.muted{color:var(--muted)}a{color:var(--teal)}h1{margin:0 0 8px}h2{margin:0 0 8px;font-size:18px}
-    @media(max-width:760px){.bar{flex-wrap:wrap;padding:10px 0}.nav{order:3;width:100%;overflow:auto}.grid{grid-template-columns:1fr}.chat{height:calc(100dvh - 150px)}.form{grid-template-columns:1fr 76px}.msg{max-width:94%}}
-  </style>
-</head>
-<body>
-  <header><div class="bar"><div class="brand">OpenCampusKB<small id="brandSub"></small></div><nav class="nav" id="nav"></nav><div class="lang" id="lang"></div></div></header>
-  <main><div class="notice" id="notice"></div><div id="app"></div></main>
-  <script>
-    const BOOT=${config};
-    let locale=localStorage.getItem("ockb-locale")||"en";
-    let route=location.pathname.split("/").filter(Boolean)[0]||"ask";
-    let messages=[];
-    const $=s=>document.querySelector(s);
-    const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\\\"":"&quot;","'":"&#39;"}[m]));
-    const t=()=>BOOT.campus.copy[locale]||BOOT.campus.copy.en;
-    const cat=id=>BOOT.campus.categories[id]?.[locale]||id;
-    const trust=id=>BOOT.campus.trust[id]?.[locale]||id;
-    function nav(){const copy=t();$("#brandSub").textContent=copy.brandSub;$("#notice").textContent=copy.subtitle;$("#nav").innerHTML=Object.entries(copy.nav).map(([id,label])=>'<button class="'+(route===id?'active':'')+'" onclick="go(\\''+id+'\\')">'+label+'</button>').join("");$("#lang").innerHTML=BOOT.campus.locales.map(l=>'<button class="'+(locale===l?'active':'')+'" onclick="setLang(\\''+l+'\\')">'+(l==='zh-CN'?'SC':l==='zh-HK'?'TC':'EN')+'</button>').join("")}
-    function setLang(l){locale=l;localStorage.setItem("ockb-locale",l);render()} function go(r){route=r;history.pushState(null,"","/"+(r==="ask"?"":r+"/"));render()}
-    async function ask(e){e.preventDefault();const q=$("#q").value.trim();if(!q)return;messages.push({role:"user",content:q},{role:"assistant",content:"..."});$("#q").value="";render();const res=await fetch("/api/chat",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({question:q,locale})});const data=await res.json();messages[messages.length-1]={role:"assistant",content:data.answer,sources:data.sources||[]};render()}
-    async function submitUpload(e){e.preventDefault();const form=new FormData(e.currentTarget);const res=await fetch("/api/upload",{method:"POST",body:form});const data=await res.json();document.querySelector("#uploadMsg").textContent=data.message||"Submitted."}
-    function askPage(){const copy=t();return '<section class="panel chat"><div class="messages">'+(messages.length?messages.map(m=>'<div class="msg '+(m.role==='user'?'user':'')+'"><pre>'+esc(m.content)+'</pre>'+(m.sources?.length?'<div class="chips">'+m.sources.map(s=>'<span class="tag">['+esc(s.id)+'] '+esc(s.title)+'</span>').join("")+'</div>':'')+'</div>').join(""):'<p class="muted">'+esc(copy.chatEmpty)+'</p>')+'</div><form class="form" onsubmit="ask(event)"><textarea id="q" placeholder="'+esc(copy.placeholder)+'"></textarea><button class="btn primary">'+copy.send+'</button></form></section>'}
-    function kbPage(){return '<div class="grid">'+BOOT.documents.map(d=>'<article class="card"><div class="chips"><span class="tag">'+cat(d.category)+'</span><span class="tag">'+trust(d.source_type)+'</span><span class="tag">'+esc(d.file_type)+'</span><span class="tag">'+esc(d.applicable_year)+'</span></div><h2>'+esc(d.title)+'</h2><p class="muted">'+esc(d.summary)+'</p><details><summary>Preview source text</summary><p>'+esc(d.text)+'</p></details></article>').join("")+'</div>'}
-    function uploadPage(){const copy=t();return '<section class="panel stack"><h1>'+copy.uploadTitle+'</h1><p class="muted">'+copy.uploadBody+'</p><form class="stack" onsubmit="submitUpload(event)"><div class="field"><label>Title</label><input name="title" required></div><div class="field"><label>Category</label><select name="category">'+Object.keys(BOOT.campus.categories).map(id=>'<option value="'+esc(id)+'">'+cat(id)+'</option>').join("")+'</select></div><div class="field"><label>File</label><input name="file" type="file"></div><button class="btn primary">Submit demo</button><div id="uploadMsg" class="muted"></div></form></section>'}
-    function aboutPage(){const copy=t();return '<section class="panel stack"><h1>'+copy.aboutTitle+' <span class="tag">'+BOOT.campus.project.version+'</span></h1><p>'+copy.aboutBody+'</p><div class="grid"><section class="card"><h2>Reviewed KB</h2><p class="muted">Uploaded materials should be reviewed before ingestion.</p></section><section class="card"><h2>Source-grounded</h2><p class="muted">Answers cite mock source documents and avoid unsupported certainty.</p></section><section class="card"><h2>Portable</h2><p class="muted">Replace config, seed documents, and deployment secrets for your own campus.</p></section></div></section>'}
-    function render(){nav();$("#app").innerHTML=route==="kb"?kbPage():route==="upload"?uploadPage():route==="about"?aboutPage():askPage();const box=document.querySelector(".messages");if(box)box.scrollTop=box.scrollHeight}
-    addEventListener("popstate",()=>{route=location.pathname.split("/").filter(Boolean)[0]||"ask";render()});render();
-  </script>
-</body>
-</html>`;
 }
 
 export default {
@@ -273,20 +218,18 @@ export default {
     if (url.pathname === "/api/documents") return json({ documents: DOCUMENTS });
     if (url.pathname === "/api/upload" && request.method === "POST") return uploadDemo(request);
     if (url.pathname === "/api/feedback" && request.method === "POST") return feedbackDemo(request);
-    if (url.pathname === "/api/email-notification" && ["POST", "DELETE"].includes(request.method)) {
-      return emailNotificationDemo(request);
-    }
+    if (url.pathname === "/api/email-notification" && ["POST", "DELETE"].includes(request.method)) return emailNotificationDemo(request);
     if (url.pathname === "/api/chat" && request.method === "POST") {
       const body = await request.json().catch(() => ({}));
       const question = String(body.question || "").trim();
       if (!question) return json({ error: "Question is required." }, { status: 400 });
-      return json(answerFromSources(question, body.locale || "en"));
+      const payload = buildAnswer(question, body.locale || "en");
+      if (body.stream || request.headers.get("accept")?.includes("text/event-stream")) return streamChat(payload);
+      return json(payload);
     }
-    return new Response(appHtml(), {
-      headers: {
-        "content-type": "text/html; charset=utf-8",
-        "cache-control": "no-store"
-      }
+    return json({
+      ok: true,
+      message: "OpenCampusKB Worker API demo. Use the Next.js app for the frontend or call /api/chat, /api/documents, /api/upload, /api/feedback, and /api/email-notification."
     });
   }
 };

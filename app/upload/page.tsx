@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { submitDemoUpload } from "@/lib/api";
 import { useLanguage } from "@/components/language-provider";
 
-const modes = ["file", "text", "link"] as const;
+const modes = ["file", "text", "link", "batch"] as const;
 
 export default function UploadPage() {
   const { copy } = useLanguage();
@@ -72,6 +72,25 @@ export default function UploadPage() {
             <div className="field full">
               <label>Summary</label>
               <textarea name="summary" minLength={30} maxLength={300} required />
+            </div>
+          </>
+        ) : null}
+        {mode === "batch" ? (
+          <>
+            <div className="field">
+              <label>Batch folder name</label>
+              <input name="batch_name" maxLength={120} placeholder="Example: 2026 orientation files" required />
+            </div>
+            <div className="field">
+              <label>Publication month</label>
+              <input name="published_month" placeholder="2026.7" />
+            </div>
+            <div className="field full">
+              <label>Files</label>
+              <input type="file" name="files" multiple />
+              <small className="helper-text">
+                Production can apply shared tags, trust tier, source URL, and notes to a batch, then let admins edit each file separately.
+              </small>
             </div>
           </>
         ) : null}

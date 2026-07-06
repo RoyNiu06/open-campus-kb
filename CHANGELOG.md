@@ -1,5 +1,14 @@
 # Changelog
 
+## v3.0.1-example - 2026-07-06
+
+- Synced the CityUInfo example toward the current v3 architecture: Pages `app/` frontend plus Worker API.
+- Added a mock Course Engine / RAG / hybrid routing shape for structured domain questions.
+- Added mock streaming-compatible chat API fields, engine mode flags, relevance scores, citations, and lightweight timing fields.
+- Updated the CityUInfo example config, generic template, and README docs to cover file/text/link/batch uploads, feedback, email notification, tags, and source trust tiers.
+- Recorded that Cloudflare `@cf/baai/bge-m3` was evaluated as an embedding option, but the example keeps the current configurable embedding-provider pattern rather than migrating by default.
+- Rewrote garbled Chinese documentation and example copy as clean UTF-8.
+
 ## v2.4.0-example - 2026-07-05
 
 - Added a Next `app/` frontend example aligned with the current Pages + Workers production shape.

@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useRef, useState } from "react";
-import { RotateCcw, Send, ThumbsDown, ThumbsUp } from "lucide-react";
+import { BookOpen, Github, RotateCcw, Send, ThumbsDown, ThumbsUp } from "lucide-react";
 import { campus } from "@/lib/example-data";
 import { askExample, ChatSource } from "@/lib/api";
 import { useLanguage } from "./language-provider";
@@ -12,6 +12,7 @@ type Message = {
   role: "user" | "assistant";
   content: string;
   sources?: ChatSource[];
+  engineMode?: "course_engine" | "hybrid" | "rag";
   reaction?: "up" | "down" | null;
 };
 
@@ -45,7 +46,7 @@ export function ChatPanel() {
     setMessages((current) =>
       current.map((message) =>
         message.id === pendingId
-          ? { ...message, content: response.answer, sources: response.sources }
+          ? { ...message, content: response.answer, sources: response.sources, engineMode: response.engineMode }
           : message
       )
     );
@@ -67,7 +68,10 @@ export function ChatPanel() {
           <div className="chat-title-row">
             <h1>{copy.title}</h1>
             <a className="github-link" href={campus.repo} target="_blank" rel="noreferrer">
-              GitHub
+              <Github size={13} /> GitHub
+            </a>
+            <a className="github-link" href={campus.plannerUrl} target="_blank" rel="noreferrer">
+              <BookOpen size={13} /> Course Engine
             </a>
           </div>
           <p>{copy.subtitle}</p>
@@ -94,6 +98,11 @@ export function ChatPanel() {
           messages.map((message) => (
             <article key={message.id} className={`message ${message.role}`}>
               <div className="message-label">{message.role === "user" ? "You" : campus.name}</div>
+              {message.role === "assistant" && message.engineMode && message.engineMode !== "rag" ? (
+                <div className="engine-note">
+                  {message.engineMode === "course_engine" ? copy.engineCourse : copy.engineHybrid}
+                </div>
+              ) : null}
               <div className="bubble">
                 <SimpleMarkdown text={message.content} />
               </div>

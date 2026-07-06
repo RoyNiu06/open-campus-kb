@@ -192,6 +192,7 @@ a { color: inherit; text-decoration: none; }
 .chat-title-row { gap: 8px; }
 .github-link {
   display: inline-flex;
+  gap: 5px;
   min-height: 28px;
   align-items: center;
   padding: 0 8px;
@@ -224,6 +225,11 @@ a { color: inherit; text-decoration: none; }
 .message { display: grid; gap: 8px; max-width: 82%; }
 .message.user { justify-self: end; }
 .message-label { color: var(--muted); font-size: 12px; font-weight: 760; }
+.engine-note {
+  color: #9b5e16;
+  font-size: 12px;
+  font-weight: 820;
+}
 .bubble {
   padding: 13px 14px;
   border-radius: 8px;
@@ -384,9 +390,9 @@ details summary { display: inline-flex; align-items: center; gap: 6px; color: va
 .stack { display: grid; gap: 14px; }
 .segmented-control {
   display: inline-grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
   gap: 4px;
-  width: min(100%, 480px);
+  width: min(100%, 560px);
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: 8px;

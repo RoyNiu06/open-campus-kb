@@ -1,31 +1,34 @@
 # OpenCampusKB
-# STILL UNDER PROCESS! RECOMMAND TO DOWNLOAD FEWS DAYS LATER!
-# 仍在快速更新中，建议几天后下载
+
+> **Development status:** OpenCampusKB is still changing quickly. Please do not use it for production yet; download or fork it after the next stabilization pass.
+>
+> **开发状态：** 项目仍在快速更新中，暂不建议下载或用于生产；建议几天后再查看。
+
 OpenCampusKB is an open-source framework for building reviewed, source-grounded knowledge bases and AI Q&A assistants.
 
 [中文说明 / Chinese README](README_CN.md)
 
-It started from the production experience of **CityUInfo**, a non-official freshman knowledge base and AI assistant for City University of Hong Kong students. The open-source version keeps the product shape, review-first workflow, anonymous usage model, source citation logic, and deployment notes, while removing private documents, credentials, logs, and school-specific production data.
+It started from the production experience of **CityUInfo**, a non-official freshman knowledge base and AI assistant for City University of Hong Kong students. The open-source version keeps the product shape, review-first workflow, anonymous usage model, source citation logic, feedback loop, and Cloudflare Pages + Workers deployment notes, while removing private documents, credentials, logs, and school-specific production data.
 
 - Live production reference: [CityUInfo](https://cityuinfo.royilab.com)
 - Repository: [RoyNiu06/open-campus-kb](https://github.com/RoyNiu06/open-campus-kb)
-- Current example version: `v2.4.0-example`
+- Current example version: `v3.0.1-example`
 
 ## Project Overview
 
 OpenCampusKB is designed for teams that need an AI assistant they can actually govern. Instead of letting a model answer from memory, the system is built around reviewed knowledge, source citations, and administrator-controlled ingestion.
 
-The framework supports a review-first knowledge workflow. Uploaded materials should stay pending until an administrator approves, rejects, edits metadata, disables, archives, or deletes them. This gives the operator real control over what enters the searchable knowledge base.
+Uploaded materials should stay pending until an administrator approves, rejects, edits metadata, disables, archives, or deletes them. This gives the operator real control over what enters the searchable knowledge base.
 
 The user experience can be login-free. A deployment may use anonymous IDs for usage limits, abuse prevention, chat history, and optional analytics. If the product owner clearly discloses the policy and obtains user consent, administrators may review anonymized conversation content to improve answer quality, discover common questions, and update the knowledge base.
 
-The default architecture uses RAG, retrieval-augmented generation. User questions are matched against approved document chunks, then the model answers with citations. This reduces hallucination risk and makes answers easier to audit. The current demo uses mock keyword retrieval so it can run locally without cloud services; production deployments should replace it with embeddings and a vector database.
+The default architecture uses RAG, retrieval-augmented generation. User questions are matched against approved document chunks, then the model answers with citations. The current demo uses mock keyword retrieval so it can run locally without cloud services; production deployments should replace it with embeddings, hybrid retrieval, and a vector database.
+
+Recent CityUInfo versions added a **Course Engine** pattern: before normal RAG, the backend can route highly structured questions to a specialized engine backed by structured records, then combine that result with RAG when useful. Although the name comes from course planning, the same pattern can be expanded to company policies, project runbooks, product catalogs, ticket workflows, research notes, or any domain where structured facts and procedural answers outperform pure document retrieval.
 
 OpenCampusKB is not limited to universities. The same pattern can be adapted for companies, project teams, research groups, clubs, support teams, onboarding portals, internal policy assistants, or any community that wants a reviewed knowledge base with AI access.
 
 The AI layer is provider-agnostic. You can use hosted models through OpenRouter, OpenAI, Anthropic, Gemini, DeepSeek, or another provider. You can also modify the backend to use local models for stronger privacy control, especially for internal or sensitive deployments.
-
-The project is intentionally modular and early-stage. It leaves room for future changes: stronger admin workflows, richer ingestion pipelines, local model support, multi-tenant deployments, enterprise authentication, analytics dashboards, and more specialized frontend experiences.
 
 ## Core Principles
 
@@ -42,10 +45,12 @@ The project is intentionally modular and early-stage. It leaves room for future 
 
 - A runnable local demo with mock documents and source-grounded chat.
 - A production-shaped example with a Next `app/` frontend for Cloudflare Pages and a Worker API.
-- A legacy all-in-one Worker preview for low-friction local testing.
+- A Worker API demo with mock `/api/chat`, optional SSE-style streaming, upload, feedback, notification, and document endpoints.
+- A Course Engine / RAG / hybrid routing demonstration using mock structured course data.
+- Citation chips, relevance-score UI, feedback hooks, and lightweight timing fields.
 - A generic campus template under `templates/campus-template`.
-- A desensitized `examples/cityuinfo` example with mock seed documents.
-- Supabase schema scaffolding for reviewed documents, chunks, questions, and feedback.
+- A desensitized `examples/cityuinfo` example with mock seed documents and config.
+- Supabase schema scaffolding for reviewed documents, chunks, questions, feedback, and usage logs.
 - Documentation for architecture, deployment, privacy, release policy, and adaptation.
 - A release check script that scans required files, Worker syntax, seed parsing, and common secret patterns.
 
@@ -110,19 +115,13 @@ The Worker API provides:
 
 The local demo intentionally works without OpenRouter, Supabase, R2, Turnstile, or a login system. Production deployments should replace mock retrieval with a real vector store and reviewed ingestion pipeline.
 
-If you want the older all-in-one Worker preview:
-
-```bash
-npm run preview
-```
-
 ## Useful Commands
 
 ```bash
 npm run check          # Worker syntax check
 npm run app:dev        # Next app frontend at 127.0.0.1:3000
 npm run pages:build    # Static export prepared for Cloudflare Pages
-npm run preview        # Legacy all-in-one Worker preview at 127.0.0.1:8788
+npm run preview        # Worker preview at 127.0.0.1:8788
 npm run seed:example   # Parse mock CityUInfo seed documents into JSON
 npm run check:release  # Release readiness and secret-pattern check
 ```
@@ -131,17 +130,17 @@ npm run check:release  # Release readiness and secret-pattern check
 
 ```text
 open-campus-kb/
-  app/                            Next app frontend for Pages-style deployment
-  components/                     shared frontend components
-  lib/                            example data and API client helpers
-  worker/                         runnable mock Worker
-  templates/campus-template/       generic starter template
-  examples/cityuinfo/              desensitized CityUInfo-style example
-  scripts/                         preview, Pages export, seed, and release checks
-  supabase/                        schema scaffold
-  docs/                            architecture and operator docs
-  .env.example                     environment variable names only
-  wrangler.example.jsonc           Cloudflare Worker example config
+  app/                       Next app frontend for Pages-style deployment
+  components/                shared frontend components
+  lib/                       example data and API client helpers
+  worker/                    runnable mock Worker API
+  templates/campus-template/ generic starter template
+  examples/cityuinfo/        desensitized CityUInfo-style example
+  scripts/                   preview, Pages export, seed, and release checks
+  supabase/                  schema scaffold
+  docs/                      architecture and operator docs
+  .env.example               environment variable names only
+  wrangler.example.jsonc     Cloudflare Worker example config
 ```
 
 ## Recommended Architecture
@@ -161,9 +160,10 @@ Suggested production flow:
 ```text
 User question
 -> anonymous/session usage limit
--> retrieve approved document chunks
--> call chat model with source-grounded context
--> return answer with citations
+-> lightweight route/rewrite step
+-> Course Engine, RAG, or hybrid retrieval
+-> chat model with source-grounded context
+-> streamed answer with citations
 -> record usage and optional feedback
 ```
 
@@ -174,8 +174,8 @@ Upload or admin seed document
 -> pending review
 -> admin approval
 -> text extraction
--> chunking
--> embedding
+-> metadata header creation
+-> chunking or whole-record short text embedding
 -> vector storage
 -> searchable in RAG
 ```
@@ -192,14 +192,12 @@ Start with:
 Short path:
 
 1. Copy the generic template.
-2. Rename the project, domain, categories, and source trust tiers.
+2. Rename the project, domain, tags, and source trust tiers.
 3. Replace mock seed documents with reviewed public examples.
 4. Configure Supabase, R2, AI provider, local model backend, and Turnstile as needed.
 5. Keep private documents, admin credentials, service-role keys, and production logs out of the public repository.
 
 ## Prompt: Ask An AI Agent To Start The Demo
-
-You can paste this into Codex, Cursor, Claude Code, or another coding agent:
 
 ```text
 You are helping me run the OpenCampusKB open-source demo locally.
@@ -221,19 +219,7 @@ Constraints:
 - Report the exact commands you ran and the final local URL.
 ```
 
-Expected command path:
-
-```bash
-git clone https://github.com/RoyNiu06/open-campus-kb.git
-cd open-campus-kb
-npm install
-npm run check:release
-npm run preview
-```
-
 ## Prompt: Adapt OpenCampusKB For Your School, Company, Or Team
-
-You can paste this into your AI coding agent after cloning the repository:
 
 ```text
 I want to adapt OpenCampusKB into a reviewed knowledge base and AI Q&A assistant for my school, company, project team, or community.
@@ -246,7 +232,7 @@ Organization information:
 - Domain:
 - Languages:
 - Main user group:
-- Initial categories:
+- Initial tags:
 - Source trust tiers:
 - Contact email:
 - Whether this is official or unofficial:
@@ -264,8 +250,9 @@ Implementation goals:
 8. Prepare environment variables using .env.example.
 9. If I choose Cloudflare, guide me through Pages, Workers, R2, Turnstile, and optional MCP or Wrangler setup.
 10. If I choose Supabase, guide me through creating an organization/project, running migrations, enabling pgvector, and storing service keys only as backend secrets.
-11. If I choose local models, explain what backend changes are needed and how to keep model endpoints private.
-12. If a token is needed, ask me to create a least-privilege token and store it in the deployment platform secret manager. Never hard-code it into frontend code or commit it.
+11. If structured questions exist, design a Course Engine-like domain engine and decide when to route to it instead of pure RAG.
+12. If I choose local models, explain what backend changes are needed and how to keep model endpoints private.
+13. If a token is needed, ask me to create a least-privilege token and store it in the deployment platform secret manager. Never hard-code it into frontend code or commit it.
 
 Before making changes:
 - Explain which files you will modify.
@@ -277,43 +264,6 @@ After making changes:
 - Start the local preview.
 - Verify /health, /api/documents, /api/chat, and the main pages.
 - Summarize what still needs real production configuration.
-```
-
-## Prompt: Deploy With Cloudflare And Supabase
-
-Use this only when you are ready to connect real services:
-
-```text
-Help me deploy OpenCampusKB using Cloudflare and Supabase.
-
-Please proceed carefully and do not expose secrets.
-
-Cloudflare goals:
-- Use Pages for the frontend if the project has a static frontend.
-- Use Workers for /api/*.
-- Use R2 for uploaded files.
-- Use Turnstile for public upload protection.
-- Use Wrangler or Cloudflare MCP if available.
-
-Supabase goals:
-- Create or use a Supabase project.
-- Apply the schema under supabase/migrations.
-- Enable pgvector.
-- Store documents, chunks, questions, feedback, usage logs, and review metadata.
-- Keep the service-role key server-side only.
-
-AI goals:
-- Configure a chat model and embedding model through backend secrets.
-- Add a retrieval step over approved chunks only.
-- Make the answer prompt cite sources and say when information is missing.
-- If local models are preferred, keep the model endpoint private and call it from the backend only.
-
-Safety requirements:
-- Never put API keys in frontend code.
-- Never commit .env or .dev.vars.
-- Use least-privilege tokens where possible.
-- Tell me exactly which secrets I need to create and where to paste them.
-- Run a secret scan before any git commit.
 ```
 
 ## Release Readiness
